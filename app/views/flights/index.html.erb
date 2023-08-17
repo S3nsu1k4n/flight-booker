@@ -22,15 +22,16 @@
   <%= form_with url: root_path, method: 'GET' do |form| %>
     <table>
       <thead>
-        <th>Departure Airport</th><th>Arrival Airport</th><th>Date</th><th>Duration</th>
+        <th></th><th>Departure Airport</th><th>Arrival Airport</th><th>Date</th><th>Duration</th>
       </thead>
       <tbody>
-        <% @available_flights.each do |f| %>
+        <% @available_flights.each do |av| %>
           <tr>
-          <td><%= f.departure_airport_id %></td>
-          <td><%= f.arrival_airport_id %></td>
-          <td><%= f.departure_date %></td>
-          <td><%= f.duration %> hours</td>
+          <td><%= form.radio_button :flight_choice, 'This' %></td>
+          <td><%= av.departure_airport.code %></td>
+          <td><%= av.arrival_airport.code %></td>
+          <td><%= av.departure_date.strftime('%Y/%m/%d') %></td>
+          <td><%= av.duration %> hours</td>
           </tr>
         <% end %>
       </tbody>
