@@ -19,7 +19,7 @@
 <div>
   <h1>Available Flights</h1>
   <% if !@available_flights.nil? %>
-  <%= form_with url: root_path, method: 'GET' do |form| %>
+  <%= form_with url: bookings_new_path, method: 'GET' do |form| %>
     <table>
       <thead>
         <th></th><th>Departure Airport</th><th>Arrival Airport</th><th>Date</th><th>Duration</th>
@@ -27,7 +27,7 @@
       <tbody>
         <% @available_flights.each do |av| %>
           <tr>
-          <td><%= form.radio_button :flight_choice, 'This' %></td>
+          <td><%= form.radio_button :flight_choice, av.id %></td>
           <td><%= av.departure_airport.code %></td>
           <td><%= av.arrival_airport.code %></td>
           <td><%= av.departure_date.strftime('%Y/%m/%d') %></td>
