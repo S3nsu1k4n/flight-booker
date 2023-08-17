@@ -4,7 +4,6 @@ class FlightsController < ApplicationController
     @flight_dates = Flight.all.map { |f| [f.departure_date.strftime('%Y/%m/%d')] }.uniq.sort
     @flight = Flight.all
     @available_flights = Flight.where(flight_params) if params.key? :flight
-    p @available_flights
   end
 
   private
