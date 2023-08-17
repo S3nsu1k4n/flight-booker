@@ -9,13 +9,33 @@
     <%= form.label :arrival_airport_id %>
     <%= form.select :arrival_airport_id, @airport_options %>
 
-    <%= form.label :passenger %>
-    <%= form.select :passenger, 1..4 %>
-
     <%= form.label :departure_date %>
     <%= form.select :departure_date, @flight_dates %>
 
     <br><%= form.submit 'Search' %>
-
   <% end %>
 <div>
+
+<div>
+  <h1>Available Flights</h1>
+  <% if !@available_flights.nil? %>
+  <%= form_with url: root_path, method: 'GET' do |form| %>
+    <table>
+      <thead>
+        <th>Departure Airport</th><th>Arrival Airport</th><th>Date</th><th>Duration</th>
+      </thead>
+      <tbody>
+        <% @available_flights.each do |f| %>
+          <tr>
+          <td><%= f.departure_airport_id %></td>
+          <td><%= f.arrival_airport_id %></td>
+          <td><%= f.departure_date %></td>
+          <td><%= f.duration %> hours</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <%= form.submit 'Choose flight' %>
+  <% end %>
+<% end %>
+</div>
