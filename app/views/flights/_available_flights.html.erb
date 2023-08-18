@@ -9,7 +9,7 @@
       <tbody>
         <% @available_flights.each do |av| %>
           <tr>
-          <td><%= form.radio_button :flight_id, av.id %></td>
+          <td><%= form.radio_button '[booking]flight_id', av.id %></td>
           <td><%= av.departure_airport.code %></td>
           <td><%= av.arrival_airport.code %></td>
           <td><%= av.departure_date.strftime('%Y/%m/%d') %></td>
@@ -18,7 +18,7 @@
         <% end %>
       </tbody>
     </table>
-  <%= form.hidden_field 'passengers', :value => params[:flight][:passengers] %>
+  <%= form.hidden_field '[booking]passengers', :value => params[:flight][:passengers] %>
   <%= form.submit 'Choose flight' %>
   <% end %>
 
