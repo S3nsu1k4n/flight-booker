@@ -1,48 +1,5 @@
 <h1>Flights</h1>
 
-<div>
-  <h1>Search for flights</h1>
-  <%= form_with model: @flight, url: root_path, method: 'GET' do |form| %>
-    <%= form.label :departure_airport_id %>
-    <%= form.select :departure_airport_id, @airport_options %>
+<%= render partial: 'search' %>
 
-    <%= form.label :arrival_airport_id %>
-    <%= form.select :arrival_airport_id, @airport_options %>
-
-    <%= form.label :departure_date %>
-    <%= form.select :departure_date, @flight_dates %>
-    
-    <%= form.label :passengers %>
-    <%= form.select :passengers, 1..4 %>
-
-    <br><%= form.submit 'Search' %>
-  <% end %>
-<div>
-
-<div>
-  <h1>Available Flights</h1>
-  <% if !@available_flights.nil? && @available_flights.exists? %>
-  <%= form_with url: bookings_new_path, method: 'GET' do |form| %>
-    <table>
-      <thead>
-        <th></th><th>Departure Airport</th><th>Arrival Airport</th><th>Date</th><th>Duration</th>
-      </thead>
-      <tbody>
-        <% @available_flights.each do |av| %>
-          <tr>
-          <td><%= form.radio_button :flight_id, av.id %></td>
-          <td><%= av.departure_airport.code %></td>
-          <td><%= av.arrival_airport.code %></td>
-          <td><%= av.departure_date.strftime('%Y/%m/%d') %></td>
-          <td><%= av.duration %> hours</td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <%= form.submit 'Choose flight', params: {passengers:5} %>
-  <% end %>
-
-<% else %>
-  <h3>No flights found :(</h1>
-<% end %>
-</div>
+<%= render partial: 'available_flights' %>
