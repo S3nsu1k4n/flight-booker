@@ -4,16 +4,12 @@
 
 <div class="passenger-form">
   <h3>Passenger Information</h3>
-  <%= form_with model: @passengers[0], url: bookings_path do |form| %>
-    <% @passengers.each_with_index do |passenger, i| %>
-      <%= form.fields_for passenger do |sub_form| %>
-        <p><strong>Passenger <%= i + 1 %></strong><p>
-        <%= sub_form.label :name %>
-        <%= sub_form.text_field :name %>
-        <%= sub_form.label :email %>
-        <%= sub_form.text_field :email %>
-      <% end %>
-      <br>
+  <%= form_with model: @booking, url: bookings_path do |form| %>
+    <%= form.fields_for :passengers do |sub_form| %>
+      <%= sub_form.label :name %>
+      <%= sub_form.text_field :name, required: true %>
+      <%= sub_form.label :email %>
+      <%= sub_form.text_field :email, required: true %>
     <% end %>
     <%= form.submit 'Book flight' %>
   <% end %>
