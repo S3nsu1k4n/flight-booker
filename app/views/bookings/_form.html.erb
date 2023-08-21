@@ -1,0 +1,14 @@
+<div class="passenger-form">
+  <h3>Passenger Information</h3>
+  <%= form_with model: @booking, url: bookings_path do |form| %>
+    <%= form.fields_for :passengers do |sub_form| %>
+      <div>Passenger <%= sub_form.options[:child_index] + 1 %>:</div>
+      <%= sub_form.label :name %>
+      <%= sub_form.text_field :name, required: true %>
+      <%= sub_form.label :email %>
+      <%= sub_form.text_field :email, required: true %>
+      
+    <% end %>
+    <%= form.submit 'Book flight' %>
+  <% end %>
+</div>
