@@ -2,7 +2,10 @@
   <h3>Chosen flight</h3>
   <table>
   <thead>
-    <th>Flight ID</th><th>Departure Airport</th><th>Arrival Airport</th><th>Date</th><th>Duration</th><th>Passengers</th>
+    <th>Flight ID</th><th>Departure Airport</th><th>Arrival Airport</th><th>Date</th><th>Duration</th>
+    <% unless @num_passengers.nil? %>
+      <th>Passengers</th>
+    <% end %>
   </thead>
   <tbody>
     <tr>

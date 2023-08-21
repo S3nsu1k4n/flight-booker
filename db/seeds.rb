@@ -8,6 +8,7 @@
 
 Airport.destroy_all
 Flight.destroy_all
+Booking.destroy_all
 
 10.times do
   Airport.create(code: SecureRandom.send(:choose, [*'A'..'Z'], 3))
