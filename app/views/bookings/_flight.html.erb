@@ -1,0 +1,18 @@
+<div class="flight">
+  <h3>Chosen flight</h3>
+  <table>
+  <thead>
+    <th>Flight ID</th><th>Departure Airport</th><th>Arrival Airport</th><th>Date</th><th>Duration</th><th>Passengers</th>
+  </thead>
+  <tbody>
+    <tr>
+    <td><%= @flight.id %></td>
+    <td><%= @flight.departure_airport.code %></td>
+    <td><%= @flight.arrival_airport.code %></td>
+    <td><%= @flight.departure_date.strftime('%Y/%m/%d') %></td>
+    <td><%= @flight.duration %> hours</td>
+    <td><%= @num_passengers %></td>
+      </tr>
+  </tbody>
+  </table>
+</div>

@@ -1,23 +1,20 @@
 <h1>Booking</h1>
 
-<div>
-  <h3>Chosen flight</h3>
-  <%= form_with model: @flight, url: bookings_path do |form| %>
-    <table>
-    <thead>
-      <th>Flight ID</th><th>Departure Airport</th><th>Arrival Airport</th><th>Date</th><th>Duration</th><th>Passengers</th>
-    </thead>
-    <tbody>
-      <tr>
-      <td><%= @flight.id %></td>
-      <td><%= @flight.departure_airport.code %></td>
-      <td><%= @flight.arrival_airport.code %></td>
-      <td><%= @flight.departure_date.strftime('%Y/%m/%d') %></td>
-      <td><%= @flight.duration %> hours</td>
-      <td><%= @num_passengers %></td>
-        </tr>
-    </tbody>
-    </table>
-    <%= form.submit 'Book' %>
+<%= render partial: 'flight' %>
+
+<div class="passenger-form">
+  <h3>Passenger Information</h3>
+  <%= form_with model: @passengers[0], url: bookings_path do |form| %>
+    <% @passengers.each_with_index do |passenger, i| %>
+      <%= form.fields_for passenger do |sub_form| %>
+        <p><strong>Passenger <%= i + 1 %></strong><p>
+        <%= sub_form.label :name %>
+        <%= sub_form.text_field :name %>
+        <%= sub_form.label :email %>
+        <%= sub_form.text_field :email %>
+      <% end %>
+      <br>
+    <% end %>
+    <%= form.submit 'Book flight' %>
   <% end %>
 </div>
