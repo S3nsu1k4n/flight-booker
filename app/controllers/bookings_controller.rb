@@ -15,7 +15,8 @@ class BookingsController < ApplicationController
   def create
     @flight = Flight.find(params['booking']['flight_id'])
     @booking = @flight.bookings.build(booking_params)
-
+    passengers = @booking.passengers.map {|passenger| { name: passenger.name, email: passenger.email } }
+    PassengerMailer.with(passengers: passengers).confirmation_email.deliver_later
     if @booking.save
       redirect_to @booking
     else
